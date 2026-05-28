@@ -4,6 +4,32 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Mic, MicOff, Zap } from "lucide-react";
 
 const words = ["Cold Emails.", "Outreach.", "Pitches.", "Introductions."];
+const waveformBars = [
+  { height: 16, duration: 0.75 },
+  { height: 26, duration: 0.9 },
+  { height: 12, duration: 0.65 },
+  { height: 30, duration: 0.8 },
+  { height: 20, duration: 0.7 },
+  { height: 34, duration: 0.95 },
+  { height: 18, duration: 0.85 },
+  { height: 28, duration: 0.7 },
+  { height: 14, duration: 0.9 },
+  { height: 32, duration: 0.8 },
+  { height: 22, duration: 0.75 },
+  { height: 36, duration: 0.92 },
+  { height: 18, duration: 0.68 },
+  { height: 30, duration: 0.86 },
+  { height: 24, duration: 0.72 },
+  { height: 34, duration: 0.94 },
+  { height: 16, duration: 0.78 },
+  { height: 28, duration: 0.82 },
+  { height: 12, duration: 0.66 },
+  { height: 32, duration: 0.88 },
+  { height: 20, duration: 0.74 },
+  { height: 30, duration: 0.9 },
+  { height: 14, duration: 0.7 },
+  { height: 26, duration: 0.84 },
+];
 
 export default function HeroSection() {
   const [isRecording, setIsRecording] = useState(false);
@@ -20,6 +46,13 @@ export default function HeroSection() {
   const handleMicClick = () => {
     setIsRecording((r) => !r);
     setShowRings(!isRecording);
+  };
+
+  const handleGetStartedClick = () => {
+    document.getElementById("watch-the-magic")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   return (
@@ -169,13 +202,13 @@ export default function HeroSection() {
             exit={{ opacity: 0, y: 10 }}
             className="flex items-center gap-1 mb-8"
           >
-            {Array.from({ length: 24 }).map((_, i) => (
+            {waveformBars.map((bar, i) => (
               <motion.div
                 key={i}
                 className="w-1 rounded-full"
                 style={{ background: "linear-gradient(180deg, #4af0c4, #6c63ff)" }}
-                animate={{ height: [4, Math.random() * 28 + 4, 4] }}
-                transition={{ duration: 0.6 + Math.random() * 0.4, repeat: Infinity, delay: i * 0.05 }}
+                animate={{ height: [4, bar.height, 4] }}
+                transition={{ duration: bar.duration, repeat: Infinity, delay: i * 0.05 }}
               />
             ))}
             <span className="ml-3 text-sm" style={{ color: "#4af0c4" }}>Listening...</span>
@@ -193,10 +226,11 @@ export default function HeroSection() {
         <motion.button
           whileHover={{ scale: 1.03, boxShadow: "0 0 30px rgba(74,240,196,0.25)" }}
           whileTap={{ scale: 0.97 }}
+          onClick={handleGetStartedClick}
           className="px-8 py-4 rounded-full font-semibold text-black text-base"
           style={{ background: "linear-gradient(135deg, #4af0c4 0%, #6c63ff 100%)" }}
         >
-          Start Speaking — It&apos;s Free
+          Get Started
         </motion.button>
         <button className="px-8 py-4 rounded-full font-medium text-sm border" style={{ borderColor: "rgba(255,255,255,0.1)", color: "#888" }}>
           Watch Demo ↗

@@ -108,7 +108,7 @@ export default function AssistantSection() {
   };
 
   return (
-    <section className="relative py-32 px-6 md:px-12 max-w-7xl mx-auto">
+    <section id="watch-the-magic" className="relative py-32 px-6 md:px-12 max-w-7xl mx-auto scroll-mt-24">
       {/* Section header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
